@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: society_maintenance
+  resources:
+    static-locations: classpath:/static/
+    cache:
+      period: 3600
+  datasource:
+    url: jdbc:postgresql://host.containers.internal:5432/mydatabase
+    username: myuser
+    password: strongpassword
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  mvc:
+    cors:
+      mappings:
+        "/**":
+          allowed-origins: "*"
+          allowed-methods: "*"
+          allowed-headers: "*"
+
+server:
+  servlet:
+    context-path: /
+
+# Spring Security + JWT (using spring-boot-starter-security + jjwt or springdoc)
+security:
+  jwt:
+    secret: "${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"
+    expiration: 3600000 # in milliseconds, optional
+    refresh-token-secret: "${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"
+
+# Swagger/OpenAPI (springdoc)
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    url: /v3/api-docs
+
+# Custom paths for SPA fallback
+# In Spring Boot, SPA fallback can be handled via controller or WebMvcConfigurer
