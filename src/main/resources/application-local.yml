@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.1.10:5432/mydatabase
+    username: myuser
+    password: strongpassword
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # options: create | create-drop | update | validate | none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+# Swagger/OpenAPI (springdoc)
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    url: /v3/api-docs
+
+# Custom paths for SPA fallback
+# In Spring Boot, SPA fallback can be handled via controller or WebMvcConfigurer
+
+
