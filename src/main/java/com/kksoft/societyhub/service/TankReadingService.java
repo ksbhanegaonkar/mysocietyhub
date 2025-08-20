@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class TankReadingService {
@@ -24,5 +25,9 @@ public class TankReadingService {
         readingEntity.setWaterLevel(reading.getWaterLevel());
         readingEntity.setTimestamp(LocalDateTime.now());
         return repository.save(readingEntity);
+    }
+
+    public List<TankReadingEntity> getAllReadings() {
+        return repository.findAll();
     }
 }
